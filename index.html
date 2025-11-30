@@ -14,11 +14,11 @@
         color: red;
         text-decoration:underline;
         font-family: tahoma, helvetica, sans-serif;
-      }<p>
+      }
       
       em {
        font-size: normal;
-        color: red;
+        color: black;
         background-color: yellow;
         font-weight: bold;
 
@@ -30,8 +30,8 @@
 
       li:first-child {
         border: thick solid green;
-        margin-bottom:lem;
-        margin-top: lem;
+        margin-bottom:1em ;
+        margin-top:1em;
         padding: 1ex;
         width: 40%;
 
@@ -56,8 +56,10 @@
     
     } 
 
-ol{border: thick solid purple;  margin-bottom: 1em;
-margin-top: 1em; padding: 4ex;width:50%;background-color:aquamarine;
+ol{border: thick solid purple; 
+  margin-bottom: 1em;
+  margin-top: 1em; 
+  padding: 4ex;width:50%;background-color:aquamarine;
  }
 h5 {
     color: red;
@@ -78,34 +80,52 @@ table th {
     </style>
   </head>
 
-   <body>
-  
+   <body onload="document.body.style.backgroundColor='pink'; welcomeFunction()"
+   onresize="document.body.style.backgroundColor='lightblue'"
+   onkeydown="document.body.style.backgroundColor='white'"
+   onkeyup="document.body.style.backgroundColor='lightyellow'"> 
+<script> 
+  function welcomeFunction()  {
+    alert("Welcome!");
+  }
+    function keydownFunction()  {
+      document.getElementById("name").style.backgroundColor="lightblue";
+    }
+</script>
 
-        <p> <strong>Intro to Information Systems</strong>
+Enter your name:<input type="text" id="name" onkeydown="keydownFunction()">
+     
+ 
+ <p> <strong>Intro to Information Systems</strong>
      </p>
+
+     
 
       <p class="centered">
 
-        <em>Ömer Eren Esen <br>
-        150250716</em>
+        <em>Ömer Eren Esen
+          <br>150250716
+        </em>
       </p>
 <p class="center-icon">
 <a href="https://github.com/itu-itis25-eseno25">
    <img src="github_icon.png"> </a></p>
 
-<h4>>
+<h4>
     <strong>Courses that I am taking </strong></h4>
 
   <ol>
     <li>1.101E-Introduction to Information Systems</li>
     <li>2.FIZ102E-Physics II</li>
-    <li>.BBF102E-Linear Algebra and Applications</li>
+    <li>3.BBF102E-Linear Algebra and Applications</li>
     <li>4.BLG113E-Introduction to Computer Engineering and Ethics</li>
     <li>5.ING100-EAP Through Global Goals</li>
   </ol>
 
 
-<h1><strong>Bees</strong>
+<h1 onmouseover="style.color='orange';
+style.backgroundColor='lightgreen'"
+    onmouseout="style.color='red';style.backgroundColor=''"><strong>Bees</strong>
 </h1>
 
  <p><img src="bees.jpg"></p>
