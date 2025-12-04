@@ -92,7 +92,19 @@ table th {
       document.getElementById("name").style.backgroundColor="lightblue";
     }
 </script>
+<button id="colorBtn">Change Colors!</button>
 
+<script>
+    const colors = ["red", "blue", "green", "gray"];
+    let index = 0;
+
+    document.getElementById("colorBtn").onclick = function () {
+        this.style.backgroundColor = colors[index];  
+        index = (index + 1) % colors.length;         
+    };
+</script>
+
+     
 Enter your name:<input type="text" id="name" onkeydown="keydownFunction()">
      
  
