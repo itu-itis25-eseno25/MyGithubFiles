@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Application Form</title>
+</head>
+<body>
+
+<h2>Job Application Form</h2>
+
+<form id="applicationForm">
+
+    TCKN:
+    <input type="text" id="tckn" onblur="validateTCKN()"><br><br>
+
+    Full Name:
+    <input type="text" id="fullName" onblur="validateFullName()"><br><br>
+
+    Date of Birth:
+    <input type="date" id="dob" onblur="validateDOB()"><br><br>
+
+    Gender:
+    <select id="gender">
+        <option value="">Select</option>
+        <option>Male</option>
+        <option>Female</option>
+    </select><br><br>
+
+    Skills:<br>
+    <input type="checkbox" value="JavaScript"> JavaScript
+    <input type="checkbox" value="Python"> Python
+    <input type="checkbox" value="Java"> Java<br><br>
+
+    Salary Type:
+    <select id="salaryType">
+        <option value="Monthly">Monthly</option>
+        <option value="Yearly">Yearly</option>
+    </select><br><br>
+
+    Salary Amount:
+    <input type="number" id="salary" onblur="validateSalary()"><br><br>
+
+    Years of Experience:
+    <input type="number" id="experience" onblur="validateExperience()"><br><br>
+
+    <button type="submit">Submit Application</button>
+</form>
+
+<h3>Application Preview</h3>
+<textarea id="previewBox" rows="10" cols="50" readonly></textarea>
+
+<script src="TCKN_validation.js"></script>
+<script src="FullName_validation.js"></script>
+<script src="DOB_validation.js"></script>
+<script src="Salary_validation.js"></script>
+<script src="Experience_validation.js"></script>
+
+<script>
+document.getElementById("applicationForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    document.getElementById("previewBox").value = "";
+
+    const validations = [
+        validateTCKN,
+        validateFullName,
+        validateDOB,
+        validateSalary,
+        validateExperience
+    ];
+
+    for (let v of validations) {
+        if (!v()) return;
+    }
+
+    // Collect data
+    const tckn = document.getElementById("tckn").value;
+    const name = document.getElementById("fullName").value;
+    const dob = document.getElementById("dob").value;
+    const age = calculateAge(new Date(dob));
+    const gender = document.getElementById("gender").value || "Not specified";
+
+    const skills = Array.from(document.querySelectorAll("input[type=checkbox]:checked"))
+        .map(cb => cb.value)
+        .join(", ") || "None";
+
+    const salaryType = document.getElementById("salaryType").value;
+    const salary = document.getElementById("salary").value;
+    const exp = document.getElementById("experience").value;
+
+    document.getElementById("previewBox").value =
+        `Application accepted\n\n` +
+        `TCKN: ${tckn}\n` +
+        `Full Name: ${name}\n` +
+        `Date of Birth: ${dob}\n` +
+        `Age: ${age}\n` +
+        `Gender: ${gender}\n` +
+        `Skills: ${skills}\n` +
+        `Salary: ${salaryType} ${salary}\n` +
+        `Experience: ${exp} years`;
+});
+</script>
+
+</body>
+</html>
